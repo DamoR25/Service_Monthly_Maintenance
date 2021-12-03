@@ -1,0 +1,14 @@
+---
+- name: Windows Service Status
+  hosts: all
+  tasks:
+    - name: Check Service Print Spooler - Spooler
+      win_command: powershell.exe "Get-Service -DisplayName "Spooler" | Stop-Service"
+      register: status
+    - name: Print the service status
+      debug:
+        msg: "{{ status.stdout_lines}}"
+    - name: Print value
+      debug:
+        var: my_var
+ 
